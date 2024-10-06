@@ -3,7 +3,7 @@ import Body from './components/Body'
 
 const App = () => {
   return (
-    <div className="bg-slate-900 h-screen text-white">
+    <div >
       <Body />
     </div>
   )
