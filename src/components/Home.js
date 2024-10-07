@@ -13,7 +13,7 @@ const Home = () => {
   }, [])
 
 return (
-<div className='relative   '>
+<div className='relative h-screen md:overflow-hidden '>
   {/* gradient applied  */}
   <div className={`absolute inset-0 bg-gradient-to-b ${login ?'from-[#0000008f] to-[#0000008f]': 'from-[#000000bd]  to-[#000000b0] '} `}></div>
 
