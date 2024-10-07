@@ -1,10 +1,13 @@
 import React from 'react'
 import Body from './components/Body'
+import AppContextProvider from './context/AppContext'
 
 const App = () => {
   return (
     <div >
-      <Body />
+      <AppContextProvider>
+        <Body />
+      </AppContextProvider>
     </div>
   )
 }
