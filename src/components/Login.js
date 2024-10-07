@@ -1,7 +1,9 @@
 import React, { useContext, useEffect } from "react"
 import { validate } from "../utils/validate"
 import {  useLocation, useNavigate,  } from "react-router-dom"
-import { AppContext } from "../context/AppContext"
+import { AppContext } from "../context/AppContext";
+import {auth} from '../utils/firebase';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -29,18 +31,46 @@ const Login = () => {
   }
 
   //login form submission function
-  const submitLoginForm = () => {
+  const handleSubmitForm = () => {
     //email and password validation
     const message = validate(email.current.value, password.current.value)
     setErrorMessage(message)
-  }
+    if(message !== null) return
 
-  //signup form submission function
-  const submitSignupForm = () => {
-    //email and password validation
-    const message = validate(email.current.value, password.current.value)
-    console.log(email.current.value, name.current.value, password.current.value);
-    setErrorMessage(message)
+    console.log(email.current.value, password.current.value)
+    if(isSignupForm){
+      //signup the new user
+      createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+      .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        setErrorMessage(errorMessage);
+
+      });
+    }else{
+      // login the user 
+      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+      .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        console.log(user);
+        navigate("/browse");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        setErrorMessage(errorMessage);
+
+      });
+
+    }
   }
 
   //toggle the form
@@ -77,7 +107,7 @@ const Login = () => {
           <input
             ref={email}
             type="email"
-            value={signupEmail}
+            value={signupEmail && signupEmail }
             disabled = {isSignupForm && signupEmail!== null}
             placeholder="Email Address"
             className="flex-1 border border-gray-500 bg-transparent px-5 py-5 rounded"
@@ -98,7 +128,7 @@ const Login = () => {
           {/* signin button  */}
           <div
             className="flex-1 bg-red-700 text-center rounded-md py-4 font-bold tracking-wide text-lg"
-            onClick={isSignupForm ? submitSignupForm : submitLoginForm}
+            onClick={handleSubmitForm}
           >
             {isSignupForm ? "SignUp" : "SignIn"}
           </div>
