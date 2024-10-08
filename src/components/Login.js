@@ -70,8 +70,6 @@ const Login = () => {
               console.log("updated user ; ", auth.currentUser);
               const { uid, email, displayName, photoURL } = auth.currentUser
               dispatch(addUser({ uid, email, displayName, photoURL }))
-              navigate("/browse")
-              navigate(0);
             })
             .catch((error) => {
               setErrorMessage(error.errorMessage)
@@ -93,7 +91,6 @@ const Login = () => {
         .then((userCredential) => {
           //now move the user to browse page
           console.log(userCredential.user)
-          navigate("/browse")
         })
         .catch((error) => {
           const errorCode = error.code
@@ -114,9 +111,6 @@ const Login = () => {
     setIsSignUpForm(!isSignupForm)
   }
 
-  // if (user !== null) {
-  //   navigate("/browse")
-  // }
   return (
     <div className="absolute z-10 top-[8%] w-[30%] left-[35%] space-y-4 flex justify-center items-center  text-white bg-[#0000009d] rounded-md">
       {/* content  */}
