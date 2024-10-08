@@ -1,13 +1,12 @@
-import React, { useContext, useEffect, useRef, useState} from "react"
-import { validate } from "../utils/validate"
-import Login from "./Login"
+import React, { useContext, useEffect} from "react"
 import { AppContext } from "../context/AppContext"
 import { useNavigate } from "react-router-dom"
 
 const SignUp = () => {
   const navigate = useNavigate();
 
-  const {email, errorMessage, setErrorMessage, signupForm, setSignUpForm,  setSignupEmail} = useContext(AppContext);
+
+  const {email, errorMessage, setErrorMessage, setSignUpForm,  setSignupEmail} = useContext(AppContext);
 
   useEffect(() => {
     return setErrorMessage(null)
