@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Header from './Header'
 import bgImage from '../asset/bgImage.jpg'
 import SignUp from './SignUp'
-import Login from './Login'
 import { Outlet, useLocation } from 'react-router-dom'
 const Home = () => {
   const {pathname} = useLocation();
@@ -27,7 +26,7 @@ return (
   {/* {
     login?<Login />:<SignUp />
   } */}
-  {pathname === '/' && <SignUp>1</SignUp>}
+  {pathname === '/' && <SignUp />}
   <Outlet />
 
   
