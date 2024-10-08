@@ -18,7 +18,7 @@ return (
   <div className={`absolute inset-0 bg-gradient-to-b ${login ?'from-[#0000008f] to-[#0000008f]': 'from-[#000000bd]  to-[#000000b0] '} `}></div>
 
   {/* Header */}
-    <Header login={login}/>
+    <Header />
 
   {/* backgroud image  */}
   <img src={bgImage} alt='backgroud-image' />
