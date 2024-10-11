@@ -38,7 +38,6 @@ const Login = () => {
   //for checkbox change
   function handleChange(e) {
     setRememberMe(!e.target.checked)
-    console.log(rememberMe)
   }
 
   //login form submission function
@@ -67,7 +66,6 @@ const Login = () => {
               "https://wallpapers.com/images/high/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.webp",
           })
             .then(() => {
-              console.log("updated user ; ", auth.currentUser);
               const { uid, email, displayName, photoURL } = auth.currentUser
               dispatch(addUser({ uid, email, displayName, photoURL }))
             })
@@ -77,8 +75,7 @@ const Login = () => {
         })
         .catch((error) => {
           const errorCode = error.code
-          const errorMessage = error.message
-          console.log(errorCode, errorMessage)
+          const errorMessage = error.message 
           setErrorMessage(errorMessage)
         })
     } else {
@@ -88,14 +85,9 @@ const Login = () => {
         email.current.value,
         password.current.value,
       )
-        .then((userCredential) => {
-          //now move the user to browse page
-          console.log(userCredential.user)
-        })
         .catch((error) => {
           const errorCode = error.code
           const errorMessage = error.message
-          console.log(errorCode, errorMessage)
           setErrorMessage(errorMessage)
         })
     }

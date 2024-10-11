@@ -24,7 +24,6 @@ const SignUp = () => {
 
     if (!isEmailValid) {
       setErrorMessage("Enter correct email")
-      console.log(errorMessage)
       return
     }
 
