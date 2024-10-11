@@ -26,8 +26,8 @@ return (
   {/* {
     login?<Login />:<SignUp />
   } */}
-  {pathname === '/' && <SignUp />}
-  <Outlet />
+  {pathname === '/' ? <SignUp /> : <Outlet />}
+  
 
   
 </div>

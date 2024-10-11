@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import logo from "../asset/logo.png"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
@@ -6,6 +6,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth"
 import { auth } from "../utils/firebase"
 import { userLogoURL } from "../utils/url"
 import { addUser, removeUser } from "../redux/Slice/userSlice"
+import { AppContext } from "../context/AppContext"
 
 const Header = () => {
   const { pathname } = useLocation()
@@ -14,6 +15,7 @@ const Header = () => {
   const dispatch = useDispatch()
   const user = useSelector((store) => store.user)
   const navigate = useNavigate()
+  const {setSignupEmail} = useContext(AppContext);
 
   const handleSignout = () => {
     signOut(auth).then(() => {
@@ -37,7 +39,12 @@ const Header = () => {
         navigate("/browse")
       } else {
         dispatch(removeUser())
-        navigate("/login")
+        setSignupEmail(null);
+        if(pathname !== '/'){
+          navigate("/login")
+        }else{
+          navigate("/")
+        }
       }
     })
   }, []) //eslint-disable-line react-hooks/exhaustive-deps
@@ -51,7 +58,7 @@ const Header = () => {
       } flex justify-between lg:gap-x-80 md:gap-36 gap-16   items-center pt-2`}
     >
       {/* logo */}
-      <img src={logo} alt="logo" className="w-56" />
+      <img src={logo} alt="logo" className="w-56" onClick={() => navigate("/")}/>
 
       {/* buttons  only if signup page*/}
       {!isLogin && !isBrowsePage && (

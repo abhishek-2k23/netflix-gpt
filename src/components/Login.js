@@ -23,9 +23,9 @@ const Login = () => {
     setRememberMe,
     isSignupForm,
     setIsSignUpForm,
-    signupEmail,
+    signupEmail,setSignupEmail
   } = useContext(AppContext)
-  const user = useSelector((store) => store.user)
+  
   const dispatch = useDispatch()
   //check the pathname
   const { pathname } = useLocation()
@@ -104,6 +104,7 @@ const Login = () => {
   //toggle the form
   const toggle = () => {
     if (isSignupForm) {
+    
       navigate("/login")
     } else {
       navigate("/signup")
@@ -136,8 +137,9 @@ const Login = () => {
           <input
             ref={email}
             type="email"
-            value={signupEmail && signupEmail}
-            disabled={isSignupForm && signupEmail !== null}
+            value={signupEmail && signupEmail }
+            disabled={isSignupForm}
+            onChange={(e) => setSignupEmail(e.target.value)}
             placeholder="Email Address"
             className="flex-1 border border-gray-500 bg-transparent px-5 py-5 rounded"
           />
