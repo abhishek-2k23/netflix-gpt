@@ -12,7 +12,6 @@ const useGetNowPlayingMovies = () => {
     const res = await fetch(nowPlayingMovieURL, API_OPTION)
     const movieData = await res.json()
     dispatch(addNowPlayingMovies(movieData?.results))
-    console.log(movieData?.results)
   }
 
   //call the function only once
