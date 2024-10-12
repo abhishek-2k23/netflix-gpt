@@ -55,9 +55,9 @@ const Header = () => {
     <div
       className={` ${
         isBrowsePage
-          ? " w-full px-20 lg:gap-x-36"
-          : " w-10/12 left-[8.5%] "
-      } absolute bg-gradient-to-b from-black to-transparent flex justify-between lg:gap-x-80 md:gap-36 gap-16   items-center pt-2`}
+          ? " w-full px-20  left-0 pt-0"
+          : " w-10/12 left-[8.5%] lg:gap-x-80"
+      } absolute bg-gradient-to-b from-black to-transparent flex justify-between md:gap-36 gap-16   items-center pt-2`}
     >
       {/* logo */}
       <div className="flex gap-2 items-center z-10">
