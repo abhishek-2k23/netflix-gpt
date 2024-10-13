@@ -10,7 +10,7 @@ const VideoTitle = ({title, overview}) => {
         <h1 className='text-5xl font-bold'>{title}</h1>
 
         {/* video overview  */}
-        <p className='text-lg w-[30%] text-justify'>{overview}</p>
+        <p className='text-lg w-[30%] text-justify'>{overview.length > 270 ? overview?.substring(0,250) + '....' : overview}</p>
         
         {/* button div  */}
         <div className='flex gap-5 text-lg'>
