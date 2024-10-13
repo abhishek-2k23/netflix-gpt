@@ -7,7 +7,7 @@ const MainContainer = () => {
     const nowPlayingMovies = useSelector((store) => store.movies?.nowPlayingMovies); 
     if(!nowPlayingMovies ) return;
 
-    const mainMovie = nowPlayingMovies[0];
+    const mainMovie = nowPlayingMovies[Math.floor(Math.random()*20)];
     const {original_title, overview, id} = mainMovie;
   return (
     <div className={`relative`}>
