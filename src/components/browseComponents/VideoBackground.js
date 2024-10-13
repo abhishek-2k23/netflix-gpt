@@ -7,12 +7,15 @@ const VideoBackground = ({ movieID }) => {
 
   return (
     <div className="w-screen">
-      <iframe
-        className=" w-screen -mt-2 aspect-video"
-        src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1&mute=1&showinfo=0&controls=0&loop=1`}
-        title="YouTube video player"
-        allowFullScreen
-      ></iframe>
+      <div className=" -mt-4">
+        <iframe
+          className=" w-screen  aspect-video"
+          src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1&controls=0&loop=1&mute=1`}
+          title="YouTube video player"
+          allowFullScreen
+          frameBorder={0}
+        ></iframe>
+      </div>
     </div>
   )
 }
