@@ -18,9 +18,7 @@ const Header = () => {
   const {setSignupEmail} = useContext(AppContext);
 
   const handleSignout = () => {
-    signOut(auth).then(() => {
-      
-    })
+    signOut(auth).then(() => { })
   }
 
   useEffect(() => {
@@ -37,8 +35,8 @@ const Header = () => {
         dispatch(addUser({ uid, email, displayName, photoURL }))
         navigate("/browse")
       } else {
-        dispatch(removeUser())
-        setSignupEmail(null);
+          dispatch(removeUser())
+          setSignupEmail(null);
         if(pathname !== '/'){
           navigate("/login")
         }else{
@@ -55,13 +53,13 @@ const Header = () => {
     <div
       className={` ${
         isBrowsePage
-          ? " w-full px-20  left-0 pt-0"
+          ? " w-full px-20  left-0 top-0"
           : " w-10/12 left-[8.5%] lg:gap-x-80"
-      } absolute bg-gradient-to-b from-black to-transparent flex justify-between md:gap-36 gap-16   items-center pt-2`}
+      } absolute bg-gradient-to-b from-black 95% to-transparent flex justify-between md:gap-36 gap-16   items-center pt-2`}
     >
       {/* logo */}
       <div className="flex gap-2 items-center z-10">
-        <img src={logo} alt="logo" className="w-52" onClick={() => navigate("/")}/>
+        <img src={logo} alt="logo" className={`${isBrowsePage ? 'w-40':'w-52'}`} onClick={() => navigate("/")}/>
         {
           isBrowsePage && ['Home', 'Tv Shows', 'My List'].map((menu) => (
             <div key={menu} className="flex mx-2"> <p className="text-md text-gray-100">{menu}</p> </div>
