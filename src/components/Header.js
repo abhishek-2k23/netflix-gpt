@@ -7,6 +7,7 @@ import { auth } from "../utils/firebase"
 import { userLogoURL } from "../utils/url"
 import { addUser, removeUser } from "../redux/Slice/userSlice"
 import { AppContext } from "../context/AppContext"
+import toast from "react-hot-toast"
 
 const Header = () => {
   const { pathname } = useLocation()
@@ -18,7 +19,9 @@ const Header = () => {
   const {setSignupEmail} = useContext(AppContext);
 
   const handleSignout = () => {
-    signOut(auth).then(() => { })
+    signOut(auth).then(() => { 
+      toast('You are signed out')
+    })
   }
 
   useEffect(() => {
@@ -33,15 +36,16 @@ const Header = () => {
       if (user) {
         const { uid, email, displayName, photoURL } = user
         dispatch(addUser({ uid, email, displayName, photoURL }))
+        toast.success('welcome to netflix-gpt')
         navigate("/browse")
       } else {
           dispatch(removeUser())
           setSignupEmail(null);
-        if(pathname !== '/'){
-          navigate("/login")
-        }else{
-          navigate("/")
-        }
+          if(pathname !== '/'){
+            navigate("/login")
+          }else{
+            navigate("/")
+          }
       }
 
       //unsubscribe when the component unmounts

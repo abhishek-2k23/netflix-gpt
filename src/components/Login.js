@@ -10,6 +10,7 @@ import {
 } from "firebase/auth"
 import { useSelector, useDispatch } from "react-redux"
 import { addUser } from "../redux/Slice/userSlice"
+import toast from "react-hot-toast"
 
 const Login = () => {
   const navigate = useNavigate()
@@ -76,7 +77,10 @@ const Login = () => {
         .catch((error) => {
           const errorCode = error.code
           const errorMessage = error.message 
-          setErrorMessage(errorMessage)
+          if(errorMessage ===  'Firebase: Error (auth/invalid-credential)'){
+            toast.error('Invalid credentials')
+            setErrorMessage('Invalid credentials')
+          }
         })
     } else {
       // login the user
@@ -88,7 +92,10 @@ const Login = () => {
         .catch((error) => {
           const errorCode = error.code
           const errorMessage = error.message
-          setErrorMessage(errorMessage)
+          if(errorMessage ===  'Firebase: Error (auth/invalid-credential)'){
+            toast.error('Invalid credentials')
+            setErrorMessage('Invalid credentials')
+          }
         })
     }
   }
