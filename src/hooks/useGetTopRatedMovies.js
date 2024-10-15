@@ -9,9 +9,14 @@ const useGetTopRatedMovies = () => {
 
   //getNowPlayingMovies function
   const getTopRatedMovies = async () => {
-    const res = await fetch(topRatedMovieURL, API_OPTION)
-    const movieData = await res.json()
-    dispatch(addTopRatedMovies(movieData?.results))
+    try{
+      const res = await fetch(topRatedMovieURL, API_OPTION)
+      const movieData = await res.json()
+      dispatch(addTopRatedMovies(movieData?.results))
+
+    }catch(e) {
+      console.log(e);
+    }
   }
 
   //call the function only once

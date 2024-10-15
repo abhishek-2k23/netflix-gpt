@@ -8,18 +8,22 @@ const useGetTrailerKey = (movieID) => {
     const dispatch = useDispatch();
     const trailerKey = useSelector((store) => store?.movies?.trailerKey)
   const getVideoClips = async () => {
-    const res = await fetch(
-      movieVideoURL + movieID + "/videos?language=en-US",
-      API_OPTION,
-    )
-    const videoData = await res.json()
-
-    //extracting only the trailers
-    let trailers = videoData?.results?.filter((v) => v.type === "Trailer")
-
-    //getting only one trailer if no trailer then take any video clip
-    let trailer = trailers.length ? trailers[0] : videoData[0]
-    dispatch(addTrailerKey(trailer?.key));
+    try{
+      const res = await fetch(
+        movieVideoURL + movieID + "/videos?language=en-US",
+        API_OPTION,
+      )
+      const videoData = await res.json()
+  
+      //extracting only the trailers
+      let trailers = videoData?.results?.filter((v) => v.type === "Trailer")
+  
+      //getting only one trailer if no trailer then take any video clip
+      let trailer = trailers.length ? trailers[0] : videoData[0]
+      dispatch(addTrailerKey(trailer?.key));
+    }catch(e){
+      console.log(e)
+    }
   }
 
   useEffect(() => {

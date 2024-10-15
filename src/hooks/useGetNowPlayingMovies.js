@@ -9,9 +9,14 @@ const useGetNowPlayingMovies = () => {
 
   //getNowPlayingMovies function
   const getNowPlayingMovies = async () => {
-    const res = await fetch(nowPlayingMovieURL, API_OPTION)
-    const movieData = await res.json()
-    dispatch(addNowPlayingMovies(movieData?.results))
+    try{
+      const res = await fetch(nowPlayingMovieURL, API_OPTION)
+      const movieData = await res.json()
+      dispatch(addNowPlayingMovies(movieData?.results))
+      
+    }catch(e) {
+      console.log('error from hook ' ,e);
+    }
   }
 
   //call the function only once

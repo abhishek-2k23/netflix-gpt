@@ -9,9 +9,13 @@ const useGetPopularMovies = () => {
 
   //getNowPlayingMovies function
   const getPopularMovies = async () => {
-    const res = await fetch(popularMovieURL, API_OPTION)
-    const movieData = await res.json()
-    dispatch(addPopuplarMovies(movieData?.results))
+    try{
+      const res = await fetch(popularMovieURL, API_OPTION)
+      const movieData = await res.json()
+      dispatch(addPopuplarMovies(movieData?.results))
+    }catch(e){
+      console.log(e);
+    }
   }
 
   //call the function only once
