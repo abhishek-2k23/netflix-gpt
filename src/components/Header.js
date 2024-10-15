@@ -20,7 +20,7 @@ const Header = () => {
 
   const handleSignout = () => {
     signOut(auth).then(() => { 
-      toast('You are signed out')
+      toast.error('You are signed out')
     })
   }
 

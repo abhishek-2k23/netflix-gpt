@@ -46,7 +46,10 @@ const Login = () => {
     //email and password validation
     const message = validate(email.current.value, password.current.value)
     setErrorMessage(message)
-    if (message !== null) return
+    if (message !== null) {
+      toast.error(message);
+      return;
+    }
 
     //make the loading true
 
@@ -80,9 +83,17 @@ const Login = () => {
           if(errorMessage ===  'Firebase: Error (auth/invalid-credential)'){
             toast.error('Invalid credentials')
             setErrorMessage('Invalid credentials')
+          }else if(errorMessage === 'Firebase: Error (auth/email-already-in-use).'){
+            toast.error('Email is alredy in use')
+            setErrorMessage('Email is already in use')
+          }else{
+            console.log(errorMessage + errorCode);
+            setErrorMessage(errorMessage)
           }
         })
     } else {
+      console.log(email.current.value);
+      console.log(password.current.value);
       // login the user
       signInWithEmailAndPassword(
         auth,
@@ -92,9 +103,13 @@ const Login = () => {
         .catch((error) => {
           const errorCode = error.code
           const errorMessage = error.message
-          if(errorMessage ===  'Firebase: Error (auth/invalid-credential)'){
+          if(errorCode ===  'auth/invalid-credential'){
             toast.error('Invalid credentials')
             setErrorMessage('Invalid credentials')
+          }else{
+            console.log(errorMessage + errorCode);
+            setErrorMessage(errorMessage)
+
           }
         })
     }
@@ -137,7 +152,6 @@ const Login = () => {
             ref={email}
             type="email"
             value={signupEmail && signupEmail }
-            disabled={isSignupForm}
             onChange={(e) => setSignupEmail(e.target.value)}
             placeholder="Email Address"
             className="flex-1 border border-gray-500 bg-transparent px-5 py-5 rounded"
