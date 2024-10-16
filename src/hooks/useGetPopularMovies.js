@@ -3,6 +3,7 @@ import { popularMovieURL } from "../utils/url"
 import { API_OPTION } from "../utils/constants"
 import { addPopuplarMovies } from "../redux/Slice/moviesSlice"
 import { useEffect } from "react"
+import useGetNowPlayingMovies from "./useGetNowPlayingMovies"
 
 const useGetPopularMovies = () => {
   const dispatch = useDispatch()
@@ -19,7 +20,9 @@ const useGetPopularMovies = () => {
   }
 
   //call the function only once
-  useEffect(() => getPopularMovies, [])
+  useEffect(() => {
+    getPopularMovies();
+  }, [])
 }
 
 export default useGetPopularMovies;

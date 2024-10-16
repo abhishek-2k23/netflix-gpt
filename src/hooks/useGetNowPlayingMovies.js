@@ -3,10 +3,12 @@ import { nowPlayingMovieURL } from "../utils/url"
 import { API_OPTION } from "../utils/constants"
 import { addNowPlayingMovies } from "../redux/Slice/moviesSlice"
 import { useEffect } from "react"
+import { useSelector } from "react-redux"
 
 const useGetNowPlayingMovies = () => {
+  console.log('inside useGetNowPlayingMovies')
   const dispatch = useDispatch()
-
+  const user = useSelector((store) => store.user)
   //getNowPlayingMovies function
   const getNowPlayingMovies = async () => {
     try{
@@ -20,7 +22,11 @@ const useGetNowPlayingMovies = () => {
   }
 
   //call the function only once
-  useEffect(() => getNowPlayingMovies, [])
+  useEffect(() => {
+    if(user){
+      getNowPlayingMovies();
+    }
+  }, [user])
 }
 
 export default useGetNowPlayingMovies;

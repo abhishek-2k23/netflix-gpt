@@ -20,7 +20,9 @@ const useGetTopRatedMovies = () => {
   }
 
   //call the function only once
-  useEffect(() => getTopRatedMovies, [])
+  useEffect(() => {
+    getTopRatedMovies();
+  }, [])
 }
 
 export default useGetTopRatedMovies;
