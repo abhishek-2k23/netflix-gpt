@@ -5,13 +5,10 @@ import MainContainer from './browseComponents/MainContainer';
 import SecondaryContainer from './browseComponents/SecondaryContainer';
 import useGetPopularMovies from '../hooks/useGetPopularMovies';
 import useGetTopRatedMovies from '../hooks/useGetTopRatedMovies';
-
+import { useSelector } from 'react-redux';
+import GptSearch from './browseComponents/GptSearch';
 const Browse = () => {
-  console.log("inside browse page up")
-  useEffect(() => {
-    console.log("browse component mounted")
-    return () => console.log("browse component unmounted")
-  })
+  const isSearchPage = useSelector((store) => store.gptSearch.isSearchPage);
   useGetNowPlayingMovies();
   useGetPopularMovies();
   useGetTopRatedMovies();
@@ -19,8 +16,9 @@ const Browse = () => {
   return (
     <div>
       <Header />
-      <MainContainer />
-      <SecondaryContainer />
+      
+      {isSearchPage ? <GptSearch /> : (<><MainContainer /><SecondaryContainer /></>)}
+
     </div>
   )
 }

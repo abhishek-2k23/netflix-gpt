@@ -6,6 +6,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth"
 import { auth } from "../utils/firebase"
 import { userLogoURL } from "../utils/url"
 import { addUser, removeUser } from "../redux/Slice/userSlice"
+import { setIsSearchPage } from "../redux/Slice/gptSearch"
 import { AppContext } from "../context/AppContext"
 import toast from "react-hot-toast"
 
@@ -92,6 +93,14 @@ const Header = () => {
       {/* buttons only if browse page  */}
       {isBrowsePage && (
         <div className="z-10 text-white flex gap-5 ">
+        {/* search button  */}
+        <div
+            onClick={() => dispatch(setIsSearchPage(true))}
+            className="px-4 py-2 cursor-pointer rounded-md  bg-[#fc212134] text-red-50 border font-semibold tracking-wide"
+          >
+            Search 
+          </div>
+        
           {/* first button */}
           <div className="w-10 h-10 cursor-pointer rounded-md ">
             <img
