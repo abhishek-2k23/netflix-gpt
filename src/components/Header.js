@@ -58,18 +58,21 @@ const Header = () => {
     <div
       className={` ${
         isBrowsePage
-          ? " w-full px-20  left-0 top-0"
+          ? " w-full md:px-20 px-2  left-0 top-0"
           : " w-10/12 left-[8.5%] lg:gap-x-80"
-      } absolute bg-gradient-to-b from-black 95% to-transparent flex justify-between md:gap-36 gap-16   items-center pt-2`}
+      } absolute bg-gradient-to-b from-black 95% to-transparent flex flex-col mx-auto md:mx-0 md:flex-row justify-between md:gap-36 gap-x-6 gap-y-2 items-center pt-2`}
     >
       {/* logo */}
       <div className="flex gap-2 items-center z-10">
         <img src={logo} alt="logo" className={`${isBrowsePage ? 'w-40':'w-52'}`} onClick={() => navigate("/")}/>
+        <div className=" hidden md:flex">
         {
           isBrowsePage && ['Home', 'Tv Shows', 'My List'].map((menu) => (
             <div key={menu} className="flex mx-2"> <p className="text-md text-gray-100">{menu}</p> </div>
           ))
         }
+
+        </div>
       </div>
 
       {/* buttons  only if signup page*/}
@@ -92,11 +95,11 @@ const Header = () => {
 
       {/* buttons only if browse page  */}
       {isBrowsePage && (
-        <div className="z-10 text-white flex gap-5 ">
+        <div className="z-10 text-white flex flex-wrap md:flex-nowrap gap-x-4 gap-y-1 md:gap-5 ">
         {/* search button  */}
         <div
             onClick={() => dispatch(setIsSearchPage())}
-            className="px-4 py-2 cursor-pointer rounded-md  bg-[#fc212134] text-red-50 border font-semibold tracking-wide"
+            className="px-2 md:px-4 py-2 cursor-pointer rounded-md  bg-[#fc212134] text-red-50 border font-semibold tracking-wide"
           >
             {!isSearchPage ?"Search": "Home"} 
           </div>
