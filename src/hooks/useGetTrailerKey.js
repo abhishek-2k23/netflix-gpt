@@ -27,7 +27,7 @@ const useGetTrailerKey = (movieID) => {
   }
 
   useEffect(() => {
-    getVideoClips()
+    !trailerKey && getVideoClips()
   }, [])
 
   return trailerKey;

@@ -9,6 +9,10 @@ const useGetNowPlayingMovies = () => {
   console.log('inside useGetNowPlayingMovies')
   const dispatch = useDispatch()
   const user = useSelector((store) => store.user)
+  const nowPlayingMovies = useSelector((store) => store.movies.
+  nowPlayingMovies)
+
+
   //getNowPlayingMovies function
   const getNowPlayingMovies = async () => {
     try{
@@ -23,7 +27,7 @@ const useGetNowPlayingMovies = () => {
 
   //call the function only once
   useEffect(() => {
-    if(user){
+    if(user && !nowPlayingMovies){
       getNowPlayingMovies();
     }
   }, [user])
