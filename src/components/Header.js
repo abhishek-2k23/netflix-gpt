@@ -18,7 +18,7 @@ const Header = () => {
   const user = useSelector((store) => store.user)
   const navigate = useNavigate()
   const {setSignupEmail} = useContext(AppContext);
-
+  const isSearchPage = useSelector((store) => store.gptSearch.isSearchPage)
   const handleSignout = () => {
     signOut(auth).then(() => { 
       toast.error('You are signed out')
@@ -95,10 +95,10 @@ const Header = () => {
         <div className="z-10 text-white flex gap-5 ">
         {/* search button  */}
         <div
-            onClick={() => dispatch(setIsSearchPage(true))}
+            onClick={() => dispatch(setIsSearchPage())}
             className="px-4 py-2 cursor-pointer rounded-md  bg-[#fc212134] text-red-50 border font-semibold tracking-wide"
           >
-            Search 
+            {!isSearchPage ?"Search": "Home"} 
           </div>
         
           {/* first button */}
