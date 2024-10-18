@@ -127,25 +127,25 @@ const Login = () => {
   }
 
   return (
-    <div className="absolute z-10 top-[8%] w-[30%] left-[35%] space-y-4 flex justify-center items-center  text-white bg-[#0000009d] rounded-md">
+    <div className="absolute z-10 top-[15%] md:top-[8%] w-11/12 md:w-[30%] left-[4.5%] md:left-[35%] md:space-y-4 flex justify-center items-center  text-white bg-[#0000009d] rounded-md">
       {/* content  */}
-      <div className="w-3/4 py-12 flex flex-col gap-4">
+      <div className="px-4 md:px-0 md:w-3/4 pt-5 md:py-12 flex flex-col gap-2 md:gap-4">
         {/* heading  */}
-        <h1 className="text-4xl font-bold tracking-wide mb-8">
+        <h1 className="text-2xl md:text-4xl font-bold md:font-bold tracking-wide mb-2 md:mb-6">
           {isSignupForm ? "Sign up" : "Log in"}
         </h1>
 
         {/* form  */}
         <form
           onSubmit={(e) => e.preventDefault()}
-          className="flex flex-col gap-5 text-white"
+          className="flex flex-col gap-3 md:gap-5 text-white"
         >
           {isSignupForm && (
             <input
               ref={name}
               type="text"
               placeholder="Full Name"
-              className="flex-1 border border-gray-500 bg-transparent px-5 py-5 rounded"
+              className="flex-1 border border-gray-500 bg-transparent px-5 py-3 md:py-5 rounded"
             />
           )}
           <input
@@ -154,13 +154,13 @@ const Login = () => {
             value={signupEmail && signupEmail }
             onChange={(e) => setSignupEmail(e.target.value)}
             placeholder="Email Address"
-            className="flex-1 border border-gray-500 bg-transparent px-5 py-5 rounded"
+            className="flex-1 border border-gray-500 bg-transparent px-5 py-3 md:py-5 rounded"
           />
           <input
             ref={password}
             type="password"
             placeholder="Password"
-            className="flex-1 border border-gray-500 bg-transparent px-5 py-5 rounded"
+            className="flex-1 border border-gray-500 bg-transparent px-5 py-3 md:py-5 rounded"
           />
 
           {/* Error message */}
@@ -171,14 +171,14 @@ const Login = () => {
           )}
           {/* signin button  */}
           <button
-            className="flex-1 bg-red-700 text-center rounded-md py-4 font-bold tracking-wide text-lg"
+            className="flex-1 bg-red-700 text-center rounded-md py-3 md:py-4 font-bold tracking-wide md:text-lg"
             onClick={handleSubmitForm}
           >
             {isSignupForm ? "Sign up" : "Log in"}
           </button>
         </form>
 
-        <p className="text-center text-lg">OR</p>
+        <p className="text-center md:text-lg">OR</p>
 
         {/* signin using google  */}
         <div className="flex-1 py-3 text-center text-white  bg-[#dbdbdb39] rounded-md">
@@ -189,7 +189,7 @@ const Login = () => {
 
         {/* forgot password  */}
         {!isSignupForm && (
-          <p className="text-center hover:text-gray-300 text-lg hover:cursor-pointer hover:underline">
+          <p className="text-center hover:text-gray-300 md:text-lg hover:cursor-pointer hover:underline">
             Forgot password?
           </p>
         )}
@@ -201,28 +201,28 @@ const Login = () => {
               value="false"
               type="checkbox"
               onChange={handleChange}
-              className="w-4 h-4"
+              className="md:w-4 w-3 h-3 md:h-4"
             />
-            <p className="text-lg"> Remember Me</p>
+            <p className="md:text-lg"> Remember Me</p>
           </div>
         )}
 
         {/* signup now  */}
-        <p className="text-lg">
+        <p className="md:text-lg">
           {" "}
           {isSignupForm ? "Already a user? " : "New to Netflix? "}
           <span
             onClick={toggle}
-            className="text-center hover:text-gray-300 text-lg hover:cursor-pointer hover:underline"
+            className="text-center hover:text-gray-300 md:text-lg hover:cursor-pointer hover:underline"
           >
             {isSignupForm ? "SignIn Now" : "SignUp Now"}
           </span>
         </p>
 
-        <p className="text-sm mt-2">
+        <p className="text-sm text-justify my-2">
           {" "}
           This page is protected by Google reCAPTCHA to ensure you're not a bot.{" "}
-          <span className="text-center text-blue-700 hover:text-gray-300 text-lg hover:cursor-pointer hover:underline">
+          <span className="text-center text-blue-700 hover:text-gray-300 text-sm md:text-lg hover:cursor-pointer hover:underline">
             Learn more.{" "}
           </span>{" "}
         </p>

@@ -17,7 +17,7 @@ const Header = () => {
   const dispatch = useDispatch()
   const user = useSelector((store) => store.user)
   const navigate = useNavigate()
-  const {setSignupEmail} = useContext(AppContext);
+  const {setSignupEmail, signupForm} = useContext(AppContext);
   const isSearchPage = useSelector((store) => store.gptSearch.isSearchPage)
   const handleSignout = () => {
     signOut(auth).then(() => { 
@@ -58,13 +58,13 @@ const Header = () => {
     <div
       className={` ${
         isBrowsePage
-          ? " w-full md:px-20 px-2  left-0 top-0"
-          : " w-10/12 left-[8.5%] lg:gap-x-80"
-      } absolute bg-gradient-to-b from-black 95% to-transparent flex flex-col mx-auto md:mx-0 md:flex-row justify-between md:gap-36 gap-x-6 gap-y-2 items-center pt-2`}
+          ? " w-full md:px-20 px-2  left-0 top-0 flex-col"
+          : " w-11/12 left-[4.5%] md:gap-x-80"
+      } absolute md:bg-gradient-to-b from-black 95% to-transparent flex  mx-auto md:mx-0 flex-row justify-between md:gap-36 gap-x-6 gap-y-2 items-center pt-2`}
     >
       {/* logo */}
       <div className="flex gap-2 items-center z-10">
-        <img src={logo} alt="logo" className={`${isBrowsePage ? 'w-40':'w-52'}`} onClick={() => navigate("/")}/>
+        <img src={logo} alt="logo" className={`${isBrowsePage ? 'w-40':'w-32 md:w-52'}`} onClick={() => navigate("/")}/>
         <div className=" hidden md:flex">
         {
           isBrowsePage && ['Home', 'Tv Shows', 'My List'].map((menu) => (
@@ -76,17 +76,17 @@ const Header = () => {
       </div>
 
       {/* buttons  only if signup page*/}
-      {!isLogin && !isBrowsePage && (
-        <div className="z-10 text-white flex gap-5 ">
+      {(!isLogin && !isBrowsePage  && signupForm )&& (
+        <div className="z-10 text-white flex gap-2 md:gap-5 ">
           {/* first button */}
-          <div className="px-7 py-2 cursor-pointer rounded-md border border-gray-500 ">
+          <div className="px-2 md:px-7 py-2 text-sm md:text-base cursor-pointer rounded-md border border-gray-500 ">
             English
           </div>
 
           {/* second button */}
           <div
             onClick={() => navigate("/login")}
-            className="px-7 py-2 cursor-pointer rounded-md  bg-red-700 font-bold tracking-wider"
+            className="px-2 md:px-7 py-2 cursor-pointer rounded-md text-sm md:text-base  bg-red-700 font-bold tracking-wider"
           >
             Sign In
           </div>

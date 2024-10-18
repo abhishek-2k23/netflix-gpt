@@ -12,15 +12,15 @@ const Home = () => {
   }, [])
 
 return (
-<div className='relative h-screen overflow-hidden '>
+<div className='relative h-screen '>
   {/* gradient applied to the whole screen */}
-  <div className={`absolute inset-0 bg-gradient-to-b ${login ?'from-[#0000008f] to-[#0000008f]': 'from-[#000000bd]  to-[#000000b0] '} `}></div>
+  <div className={`absolute inset-0 bg-gradient-to-b ${login ?'from-[#000000af] to-[#0000008f]': 'from-[#000000bd]  to-[#000000b0] '} `}></div>
 
   {/* Header */}
     <Header />
 
   {/* backgroud image  */}
-  <img src={bgImage} alt='backgroud-image' className='w-screen'/>
+  <img src={bgImage} alt='backgroud-image' className='fixed -z-10 w-screen h-screen object-cover'/>
 
   
   {/* {
