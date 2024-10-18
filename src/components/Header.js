@@ -58,7 +58,7 @@ const Header = () => {
     <div
       className={` ${
         isBrowsePage
-          ? " w-full md:px-20 px-2  left-0 top-0 flex-col"
+          ? " w-full md:px-20 px-2  left-0 top-0 flex-col md:flex-row"
           : " w-11/12 left-[4.5%] md:gap-x-80"
       } absolute md:bg-gradient-to-b from-black 95% to-transparent flex  mx-auto md:mx-0 flex-row justify-between md:gap-36 gap-x-6 gap-y-2 items-center pt-2`}
     >
