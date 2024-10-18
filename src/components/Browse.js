@@ -6,7 +6,7 @@ import SecondaryContainer from './browseComponents/SecondaryContainer';
 import useGetPopularMovies from '../hooks/useGetPopularMovies';
 import useGetTopRatedMovies from '../hooks/useGetTopRatedMovies';
 import { useSelector } from 'react-redux';
-import GptSearch from './browseComponents/GptSearch';
+import GptSearch from './browseComponents/gptSearch/GptSearch';
 const Browse = () => {
   const isSearchPage = useSelector((store) => store.gptSearch.isSearchPage);
   useGetNowPlayingMovies();
