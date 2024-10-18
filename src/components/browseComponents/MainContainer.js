@@ -8,7 +8,7 @@ const MainContainer = () => {
     console.log(nowPlayingMovies);
     if(!nowPlayingMovies ) return;
 
-    const mainMovie = nowPlayingMovies[Math.floor(Math.random()*20)];
+    const mainMovie = nowPlayingMovies[1];
     const {original_title, overview, id} = mainMovie;
   return (
     <div className={`pt-40 md:pt-0 bg-black md:bg-none`}>
