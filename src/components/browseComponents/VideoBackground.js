@@ -7,7 +7,7 @@ const VideoBackground = ({ movieID }) => {
 
   return (
     <div className="w-screen">
-      <div className=" -mt-4">
+      <div className=" md:-mt-4">
         <iframe
           className=" w-screen  aspect-video"
           src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1&controls=0&loop=1&mute=1`}

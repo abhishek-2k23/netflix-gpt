@@ -8,7 +8,7 @@ const SecondaryContainer = () => {
   if(!nowPlayingMovies) return <div>Loading...</div>;
   return (
     <div className='bg-black'>
-      <div className='-mt-72'>
+      <div className=' md:-mt-72'>
       <MovieList title="Now Playing" movies={nowPlayingMovies}/>
       {
         popularMovies && 

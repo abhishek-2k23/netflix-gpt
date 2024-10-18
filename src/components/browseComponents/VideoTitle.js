@@ -4,18 +4,18 @@ import { IoInformationCircleOutline } from "react-icons/io5";
 
 const VideoTitle = ({title, overview}) => {
   return (
-    <div  className='pt-[20%]  px-24 space-y-5 absolute  text-white w-screen aspect-video bg-gradient-to-r from-black to-[#00000071] overflow-hidden'>
+    <div  className='pt-[20%]  px-2 md:px-24 space-y-2 md:space-y-5 absolute  text-white w-screen aspect-video bg-gradient-to-r from-black to-[#00000071] overflow-hidden'>
 
         {/* video title  */}
-        <h1 className='text-5xl font-bold'>{title}</h1>
+        <h1 className='text-2xl md:text-5xl font-bold'>{title}</h1>
 
         {/* video overview  */}
-        <p className='text-lg w-[30%] text-justify'>{overview.length > 270 ? overview?.substring(0,250) + '....' : overview}</p>
+        <p className='hidden md:block text-lg w-[30%] text-justify'>{overview.length > 270 ? overview?.substring(0,250) + '....' : overview}</p>
         
         {/* button div  */}
-        <div className='flex gap-5 text-lg'>
-            <button className='px-12 py-3 border bg-white rounded-md  font-semibold tracking-wide text-black hover:opacity-40'><p className='flex gap-2 items-center'><FaPlay /> Play</p></button>
-            <button className='px-6 py-3 bg-[#c0c0c050] rounded-md '><p className='opacity-100 text-white flex gap-2 items-center'><IoInformationCircleOutline c /> More Info </p></button>
+        <div className='flex gap-x-2 md:gap-5 md:text-lg'>
+            <button className='px-4 md:px-12 py-1 md:py-3 border bg-white rounded-md  font-semibold tracking-wide text-black hover:opacity-40'><p className='flex gap-2 items-center'><FaPlay /> Play</p></button>
+            <button className='px-3  md:px-6 py-2 md:py-3 bg-[#c0c0c050] rounded-md '><p className='opacity-100 text-white flex md:gap-2 gap-1 items-center'><IoInformationCircleOutline c /> More Info </p></button>
         </div>
     </div>
   )
