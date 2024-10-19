@@ -13,7 +13,7 @@ const GptSearch = () => {
         <img
           src={bgImage}
           alt="bgImage"
-          className="h-screen object-cover"
+          className="w-screen h-screen object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-[#00000094] 80% to-transparent"></div>
       </div>
@@ -23,7 +23,7 @@ const GptSearch = () => {
         <GptSearchBar />
 
         {/* suggested movie lists */}
-        {searchedMoviesData !== null && <GptSuggestedMovies />}
+        <GptSuggestedMovies />
       </div>
     </>
   )

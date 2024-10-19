@@ -78,7 +78,6 @@ const Login = () => {
             })
         })
         .catch((error) => {
-          const errorCode = error.code
           const errorMessage = error.message 
           if(errorMessage ===  'Firebase: Error (auth/invalid-credential)'){
             toast.error('Invalid credentials')
@@ -87,13 +86,10 @@ const Login = () => {
             toast.error('Email is alredy in use')
             setErrorMessage('Email is already in use')
           }else{
-            console.log(errorMessage + errorCode);
             setErrorMessage(errorMessage)
           }
         })
     } else {
-      console.log(email.current.value);
-      console.log(password.current.value);
       // login the user
       signInWithEmailAndPassword(
         auth,
@@ -107,7 +103,6 @@ const Login = () => {
             toast.error('Invalid credentials')
             setErrorMessage('Invalid credentials')
           }else{
-            console.log(errorMessage + errorCode);
             setErrorMessage(errorMessage)
 
           }

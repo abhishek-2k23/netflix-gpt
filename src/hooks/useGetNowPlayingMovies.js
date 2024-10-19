@@ -6,7 +6,6 @@ import { useEffect } from "react"
 import { useSelector } from "react-redux"
 
 const useGetNowPlayingMovies = () => {
-  console.log('inside useGetNowPlayingMovies')
   const dispatch = useDispatch()
   const user = useSelector((store) => store.user)
   const nowPlayingMovies = useSelector((store) => store.movies.

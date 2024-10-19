@@ -12,7 +12,6 @@ const Browse = () => {
   useGetNowPlayingMovies();
   useGetPopularMovies();
   useGetTopRatedMovies();
-  console.log('inside browse page down')
   return (
     <div>
       <Header />
