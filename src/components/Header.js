@@ -108,9 +108,7 @@ const Header = () => {
           <div className="w-10 h-10 cursor-pointer rounded-md ">
             <img
               src={
-                user !== null && user?.photoURL !== null
-                  ? user?.photoURL
-                  : userLogoURL
+                user?.photoURL || userLogoURL
               }
               alt="userlogo"
             />
@@ -121,7 +119,7 @@ const Header = () => {
             onClick={handleSignout}
             className="px-3 py-2 cursor-pointer rounded-md  bg-red-700 font-bold tracking-wide"
           >
-            Sign out {user?.displayName?.split(" ")[0]}
+            Sign out
           </div>
         </div>
       )}
