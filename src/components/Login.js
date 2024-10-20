@@ -94,7 +94,7 @@ const Login = () => {
         <p className="text-center md:text-lg">OR</p>
 
         {/* signin using google  */}
-        <div onClick={handleGoogleLogin} className="flex-1 py-3 text-center text-white  bg-[#dbdbdb39] rounded-md">
+        <div onClick={handleGoogleLogin} className="flex-1 py-3 text-center text-white  hover:bg-[#dbdbdb39] rounded-md cursor-pointer bg-[#dbdbdb44]">
           <span className="text-white opacity-100">
             {isSignupForm ? "Sign up Using Google" : "Sign In Using Google"}
           </span>
