@@ -1,16 +1,7 @@
 import React, { useContext, useEffect } from "react"
-import { validate } from "../utils/validate"
 import { useLocation, useNavigate } from "react-router-dom"
 import { AppContext } from "../context/AppContext"
-import { auth } from "../utils/firebase"
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  updateProfile,
-} from "firebase/auth"
-import { useSelector, useDispatch } from "react-redux"
-import { addUser } from "../redux/Slice/userSlice"
-import toast from "react-hot-toast"
+import useLoginUser from "../hooks/useLoginUser"
 
 const Login = () => {
   const navigate = useNavigate()
@@ -27,88 +18,15 @@ const Login = () => {
     signupEmail,setSignupEmail
   } = useContext(AppContext)
   
-  const dispatch = useDispatch()
+  const {handleChange, handleSubmitForm, handleGoogleLogin} = useLoginUser();
+
   //check the pathname
   const { pathname } = useLocation()
 
   useEffect(() => {
     setIsSignUpForm(pathname === "/signup")
     setErrorMessage(null)
-  }, [])
-
-  //for checkbox change
-  function handleChange(e) {
-    setRememberMe(!e.target.checked)
-  }
-
-  //login form submission function
-  const handleSubmitForm = () => {
-    //email and password validation
-    const message = validate(email.current.value, password.current.value)
-    setErrorMessage(message)
-    if (message !== null) {
-      toast.error(message);
-      return;
-    }
-
-    //make the loading true
-
-    if (isSignupForm) {
-      //signup the new user
-      createUserWithEmailAndPassword(
-        auth,
-        email.current.value,
-        password.current.value,
-      )
-        .then((userCredential) => {
-          // Signed up
-          const user = userCredential.user;
-          // update the user profile by adding name and photo
-          updateProfile(user, {
-            displayName: name.current.value,
-            photoURL:
-              "https://wallpapers.com/images/high/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.webp",
-          })
-            .then(() => {
-              const { uid, email, displayName, photoURL } = auth.currentUser
-              dispatch(addUser({ uid, email, displayName, photoURL }))
-            })
-            .catch((error) => {
-              setErrorMessage(error.errorMessage)
-            })
-        })
-        .catch((error) => {
-          const errorMessage = error.message 
-          if(errorMessage ===  'Firebase: Error (auth/invalid-credential)'){
-            toast.error('Invalid credentials')
-            setErrorMessage('Invalid credentials')
-          }else if(errorMessage === 'Firebase: Error (auth/email-already-in-use).'){
-            toast.error('Email is alredy in use')
-            setErrorMessage('Email is already in use')
-          }else{
-            setErrorMessage(errorMessage)
-          }
-        })
-    } else {
-      // login the user
-      signInWithEmailAndPassword(
-        auth,
-        email.current.value,
-        password.current.value,
-      )
-        .catch((error) => {
-          const errorCode = error.code
-          const errorMessage = error.message
-          if(errorCode ===  'auth/invalid-credential'){
-            toast.error('Invalid credentials')
-            setErrorMessage('Invalid credentials')
-          }else{
-            setErrorMessage(errorMessage)
-
-          }
-        })
-    }
-  }
+  }, []);
 
   //toggle the form
   const toggle = () => {
@@ -176,7 +94,7 @@ const Login = () => {
         <p className="text-center md:text-lg">OR</p>
 
         {/* signin using google  */}
-        <div className="flex-1 py-3 text-center text-white  bg-[#dbdbdb39] rounded-md">
+        <div onClick={handleGoogleLogin} className="flex-1 py-3 text-center text-white  bg-[#dbdbdb39] rounded-md">
           <span className="text-white opacity-100">
             {isSignupForm ? "Sign up Using Google" : "Sign In Using Google"}
           </span>
