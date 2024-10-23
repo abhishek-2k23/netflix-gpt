@@ -5,4 +5,6 @@ export const topRatedMovieURL = 'https://api.themoviedb.org/3/movie/top_rated';
 export const movieVideoURL = 'https://api.themoviedb.org/3/movie/';
 export const imageCDN = 'https://image.tmdb.org/t/p/w500'
 export const searchMovieURL = 'https://api.themoviedb.org/3/search/movie?query=';
+export const movieDetailURL = 'https://api.themoviedb.org/3/movie/';
+
 
