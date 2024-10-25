@@ -3,9 +3,10 @@ import bgImage from "../../../asset/bgImage.jpg"
 import { useSelector } from "react-redux"
 import GptSuggestedMovies from "./GptSuggestedMovies"
 import GptSearchBar from "./GptSearchBar"
+import Loader from "../../Loader"
 
 const GptSearch = () => {
-  const { searchedMoviesData } = useSelector((store) => store.gptSearch)
+  const { searchedMoviesData, isLoading } = useSelector((store) => store.gptSearch)
   return (
     <>
       <div className="fixed -z-10">
@@ -23,7 +24,7 @@ const GptSearch = () => {
         <GptSearchBar />
 
         {/* suggested movie lists */}
-        <GptSuggestedMovies />
+        {isLoading ? <div className="absolute top-[40%] md:top-1/3 left-1/2"><Loader /></div> : searchedMoviesData && <GptSuggestedMovies />}
       </div>
     </>
   )
