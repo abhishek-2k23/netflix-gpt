@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { movieVideoURL } from "../utils/url";
 import { API_OPTION } from "../utils/constants";
-import { addTrailerKey } from "../redux/Slice/moviesSlice";
+import { addMovieVideos, addTrailerKey } from "../redux/Slice/moviesSlice";
 import { useEffect } from "react";
 
-const useGetTrailerKey = (movieID) => {
+const useGetTrailerKey = (movieID, fromCard=false) => {
     const dispatch = useDispatch();
-    const trailerKey = useSelector((store) => store?.movies?.trailerKey)
+    const {trailerKey, movieVideos} = useSelector((store) => store?.movies)
   const getVideoClips = async () => {
     try{
       const res = await fetch(
@@ -14,13 +14,19 @@ const useGetTrailerKey = (movieID) => {
         API_OPTION,
       )
       const videoData = await res.json()
-  
+      if(fromCard){
+        dispatch(addMovieVideos(videoData));
+        return;
+      }else{
+
       //extracting only the trailers
       let trailers = videoData?.results?.filter((v) => v.type === "Trailer")
   
       //getting only one trailer if no trailer then take any video clip
       let trailer = trailers.length ? trailers[0] : videoData[0]
       dispatch(addTrailerKey(trailer?.key));
+        
+    }
     }catch(e){
       console.log(e)
     }
@@ -30,7 +36,7 @@ const useGetTrailerKey = (movieID) => {
     !trailerKey && getVideoClips()
   }, [])
 
-  return trailerKey;
+  return {trailerKey, getVideoClips};
 }
 
 export default useGetTrailerKey;
