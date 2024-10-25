@@ -1,11 +1,12 @@
 import React from 'react'
 import MovieList from './MovieList'
 import { useSelector } from 'react-redux';
+import Loader from '../Loader';
 const SecondaryContainer = () => {
 
   const {nowPlayingMovies, popularMovies, topRatedMovies} = useSelector((store) => store.movies);
   
-  if(!nowPlayingMovies) return <div>Loading...</div>;
+  if(!nowPlayingMovies) return <div className='h-screen flex justify-center items-center'><Loader/></div>;
   return (
     <div className='bg-black'>
       <div className=' md:-mt-72'>
