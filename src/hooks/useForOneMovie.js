@@ -11,6 +11,8 @@ const useForOneMovie = () => {
         console.log(movieId, showMovieInfo);
         dispatch(addMovieId(id));
         dispatch(addShowMovieInfo(id !== null));
+
+        id === null && dispatch(addMovieInfo(null));
         
         console.log(movieId, showMovieInfo);
     }
@@ -20,6 +22,10 @@ const useForOneMovie = () => {
         .then(res  => res.json())
         .then(data => dispatch(addMovieInfo(data)))
         .catch(err => console.log(err))
+    }
+
+    const fetchMovieRelatedVideo = () => {
+
     }
 
     useEffect(() => {

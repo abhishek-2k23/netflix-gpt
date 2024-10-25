@@ -10,16 +10,16 @@ import GptSearch from './browseComponents/gptSearch/GptSearch';
 import Movie from './MovieInfo/Movie';
 const Browse = () => {
   const isSearchPage = useSelector((store) => store.gptSearch.isSearchPage);
-  const {showMovieInfo} = useSelector((store) => store.movies);
+  const {movieInfo, showMovieId} = useSelector((store) => store.movies);
 
   useGetNowPlayingMovies();
   useGetPopularMovies();
   useGetTopRatedMovies();
   return (
-    <div className={`${showMovieInfo && 'bg-fixed'}`}>
+    <div className={`${movieInfo && 'h-screen'}`}>
 
       {
-        showMovieInfo && 
+        movieInfo && 
           <div  className='fixed overflow-scroll z-50 w-screen h-screen  backdrop-blur-sm inset-0 bg-black/70 flex justify-center items-center'>
             <Movie />
           </div>

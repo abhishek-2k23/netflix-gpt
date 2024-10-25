@@ -3,10 +3,17 @@ import { useLocation } from "react-router-dom"
 import useForOneMovie from "../../hooks/useForOneMovie"
 import { imageCDN  } from "../../utils/url"
 import { useSelector } from "react-redux"
+import Loader from "../Loader"
 const Movie = () => {
   const { handleMovieCard } = useForOneMovie();
-  const {backdrop_path , original_title, overview} = useSelector((store) => store.movies.movieInfo);
-  const { pathname } = useLocation()
+  const {backdrop_path , original_title, overview, genres, release_date} = useSelector((store) => store?.movies?.movieInfo);
+  const {showMovieInfo} = useSelector((store) => store.movies);
+
+  let genersName = genres.map((genre) => genre.name).join(" |");
+
+  const { pathname } = useLocation();
+
+  if(showMovieInfo == null) return <Loader />
   return (
     <div className=" absolute w-1/2 top-1/4  -bottom-2 bg-black/90  rounded-md flex justify-center  text-red-500 ">
       {/* cancel button  */}
@@ -20,16 +27,23 @@ const Movie = () => {
 
       {/* moive background */}
       <div  className='w-full z-10  cursor-pointer relative rounded-lg '>
-        <div className="inset-0 z-20 bg-gradient-to-r from-black/80  to-transparent  absolute "></div>
+        <div className="inset-0 z-20 bg-black/80  absolute "></div>
       <img src={imageCDN+backdrop_path} alt="poster" className=' absolute w-full h-fit z-10  object-cover block rounded-lg'/>
     </div>
 
     {/* moive Info  */}
-    <div className="absolute z-20 top-1/4 left-3 text-white">
+    <div className="absolute z-20 top-1/4 left-5 text-white">
       {/* movie title  */}
-        <h1 className="text-xl md:text-2xl font-bold">{original_title}</h1>
-      {/* movie overview  */}
+        <h1 className="text-xl md:text-6xl font-bold font-titleFont tracking-widest max-w-1/4 ">{original_title}</h1>
+
       {/* {release date } */}
+        <p>{release_date.split("-")[0]+" . "}</p>
+      {/* movie overview  */}
+        <p className="text-sm md:text-base text-justify tracking-widest w-1/2 font-sans mt-4"> {overview.length > 270 ? overview?.substring(0,250) + '....' : overview}</p>
+      
+      {/* movie genere  */}
+        <p className="text-sm md:text-lg font-bold text-justify tracking-widest w-1/2 font-mono mt-4">{genersName}</p>
+      
     </div>
 
 
