@@ -108,7 +108,7 @@ const Header = () => {
           <div className="w-10 h-10 cursor-pointer rounded-md ">
             <img
               src={
-                user?.photoURL || userLogoURL
+                user?.photoURL ? user.photoURL :  userLogoURL
               }
               alt="userlogo"
             />
