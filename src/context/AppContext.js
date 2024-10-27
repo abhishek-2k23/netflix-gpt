@@ -10,7 +10,7 @@ const AppContextProvider = ({children}) => {
     const [signupForm, setSignUpForm] = useState(false)
     
   const [rememberMe, setRememberMe] = useState(true)
-  const [isSignupForm, setIsSignUpForm] = useState(false)
+  const [isSignupForm, setIsSignUpForm] = useState(true)
   const [signupEmail, setSignupEmail] = useState(null)
 
 

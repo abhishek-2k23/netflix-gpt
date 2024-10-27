@@ -15,10 +15,11 @@ const Login = () => {
     setRememberMe,
     isSignupForm,
     setIsSignUpForm,
-    signupEmail,setSignupEmail
+    signupEmail,
+    setSignupEmail,
   } = useContext(AppContext)
-  
-  const {handleChange, handleSubmitForm, handleGoogleLogin} = useLoginUser();
+
+  const { handleChange, handleSubmitForm, handleGoogleLogin } = useLoginUser()
 
   //check the pathname
   const { pathname } = useLocation()
@@ -26,12 +27,11 @@ const Login = () => {
   useEffect(() => {
     setIsSignUpForm(pathname === "/signup")
     setErrorMessage(null)
-  }, []);
+  }, [])
 
   //toggle the form
   const toggle = () => {
     if (isSignupForm) {
-    
       navigate("/login")
     } else {
       navigate("/signup")
@@ -64,7 +64,7 @@ const Login = () => {
           <input
             ref={email}
             type="email"
-            value={signupEmail && signupEmail }
+            value={signupEmail && signupEmail}
             onChange={(e) => setSignupEmail(e.target.value)}
             placeholder="Email Address"
             className="flex-1 border border-gray-500 bg-transparent px-5 py-3 md:py-5 rounded"
@@ -94,7 +94,10 @@ const Login = () => {
         <p className="text-center md:text-lg">OR</p>
 
         {/* signin using google  */}
-        <div onClick={handleGoogleLogin} className="flex-1 py-3 text-center text-white  hover:bg-[#dbdbdb39] rounded-md cursor-pointer bg-[#dbdbdb44]">
+        <div
+          onClick={handleGoogleLogin}
+          className="flex-1 py-3 text-center text-white  hover:bg-[#dbdbdb39] rounded-md cursor-pointer bg-[#dbdbdb44]"
+        >
           <span className="text-white opacity-100">
             {isSignupForm ? "Sign up Using Google" : "Sign In Using Google"}
           </span>

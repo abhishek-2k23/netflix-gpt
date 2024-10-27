@@ -9,6 +9,7 @@ import { addUser, removeUser } from "../redux/Slice/userSlice"
 import { setIsSearchPage } from "../redux/Slice/gptSearch"
 import { AppContext } from "../context/AppContext"
 import toast from "react-hot-toast"
+import { Link } from "react-router-dom"
 
 const Header = () => {
   const { pathname } = useLocation()
@@ -17,7 +18,7 @@ const Header = () => {
   const dispatch = useDispatch()
   const user = useSelector((store) => store.user)
   const navigate = useNavigate()
-  const {setSignupEmail, signupForm} = useContext(AppContext);
+  const {setSignupEmail,setIsSignUpForm, isSignupForm} = useContext(AppContext);
   const isSearchPage = useSelector((store) => store.gptSearch.isSearchPage)
   const handleSignout = () => {
     signOut(auth).then(() => { 
@@ -64,7 +65,7 @@ const Header = () => {
     >
       {/* logo */}
       <div className="flex gap-2 items-center z-10">
-        <img src={logo} alt="logo" className={`${isBrowsePage ? 'w-40':'w-32 md:w-52'}`} onClick={() => navigate("/")}/>
+        <img src={logo} alt="logo" className={`${isBrowsePage ? 'w-40':'w-32 md:w-52'}`} onClick={() => {navigate("/"); setIsSignUpForm(true)}}/>
         <div className=" hidden md:flex">
         {
           isBrowsePage && ['Home', 'Tv Shows', 'My List'].map((menu) => (
@@ -76,20 +77,19 @@ const Header = () => {
       </div>
 
       {/* buttons  only if signup page*/}
-      {(!isLogin && !isBrowsePage  && signupForm )&& (
-        <div className="z-10 text-white flex gap-2 md:gap-5 ">
+      {(!isLogin && !isBrowsePage && isSignupForm )&& (
+        <div className="z-20 text-white flex gap-2 md:gap-5 ">
           {/* first button */}
           <div className="px-2 md:px-7 py-2 text-sm md:text-base cursor-pointer rounded-md border border-gray-500 ">
             English
           </div>
 
           {/* second button */}
-          <div
-            onClick={() => navigate("/login")}
+          <Link to="/login"><div onClick={() => setIsSignUpForm(false)}
             className="px-2 md:px-7 py-2 cursor-pointer rounded-md text-sm md:text-base  bg-red-700 font-bold tracking-wider"
           >
             Sign In
-          </div>
+          </div></Link>
         </div>
       )}
 
