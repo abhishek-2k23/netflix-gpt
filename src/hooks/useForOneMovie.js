@@ -3,10 +3,12 @@ import {addMovieId, addMovieInfo, addShowMovieInfo} from '../redux/Slice/moviesS
 import { useEffect } from "react";
 import { movieDetailURL } from "../utils/url";
 import { API_OPTION } from "../utils/constants";
+import useGetTrailerKey from "./useGetTrailerKey";
 const useForOneMovie = () => {
     const dispatch = useDispatch();
     const {movieId, showMovieInfo} = useSelector((store) => store.movies);
-
+    const {getVideoClips} = useGetTrailerKey(movieId, true);
+    
     const handleMovieCard = (id) => {
         console.log(movieId, showMovieInfo);
         dispatch(addMovieId(id));
@@ -25,7 +27,7 @@ const useForOneMovie = () => {
     }
 
     const fetchMovieRelatedVideo = () => {
-
+        getVideoClips();
     }
 
     useEffect(() => {
@@ -35,7 +37,7 @@ const useForOneMovie = () => {
     }, [movieId]);
     
 
-    return {handleMovieCard };
+    return {handleMovieCard, fetchMovieRelatedVideo};
 }
 
 export default useForOneMovie;
