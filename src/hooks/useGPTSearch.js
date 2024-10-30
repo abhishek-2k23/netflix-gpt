@@ -9,6 +9,7 @@ import {
 } from "../redux/Slice/gptSearch"
 import { searchMovieURL } from "../utils/url"
 import { API_OPTION, getMatchingMovies } from "../utils/constants"
+import toast from "react-hot-toast"
 
 const useGPTSearch = () => {
   const dispatch = useDispatch()
@@ -19,14 +20,19 @@ const useGPTSearch = () => {
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" })
 
   const handleSearch = async () => {
-    if(searchRef.current.value === "") return;
+    if(searchRef.current.value === "") {
+      toast.error('No search Input');
+      return;
+    };
     dispatch(setIsLoading(true));
     try {
       //prompt for gemini AI
       const prompt =
         "Act like a movie recommendation engine with the following prompt: " +
         searchRef.current.value +
-        ". The output should be the name of 5 movie seperated with comma in case of no error. For example: The Matrix, The Matrix Reloaded, The Matrix Revolutions, The Matrix Resurrections, The Matrix Revolutions. I only need the name of movie never the description. Only the name with comma seperation. If you have any problem or error with the prompt then just give me a json data with message . Example: { 'message' : 'Change your prompt instead of this' } Make the message sort but clear to the user. For the error always return values in json stringified text"
+        `. Respond in this format:
+- if sucess then give the 5 movies name with comma seperation
+- in case of error give the message error. for the success and error sign use 0 for error and 1 for success in the start of the string.`
 
       //generating the result
       const result = await model.generateContent(prompt)
@@ -34,28 +40,14 @@ const useGPTSearch = () => {
 
       //getting the actual results as movie name string
       const text = response.text()
-
-      //if got a object
-      // if(typeof text === Object){
-      //   setErrorMessage(text?.message);
-      // }
-      //convert movies name from text to array
-      console.log(text, typeof text);
-
-      function isJsonText(){
-        try{
-          JSON.parse(text);
-          return true;
-        }catch(e){
-          return false
-        }
+      console.log(text);
+      if(text.charAt(0) === '0'){
+        dispatch(setErrorMessage(text.slice(2)));
+        toast.error('Try with another prompt.')
+        dispatch(setIsLoading(false))
+        return;
       }
-
-      if(isJsonText()){
-        dispatch(setErrorMessage(JSON.parse(text)?.message));
-        dispatch(setIsLoading(false));
-      }
-      const moviesNameArray = text.split(",")
+      const moviesNameArray = text.slice(2).split(",")
 
       //add to the redux store
       dispatch(setSearchResults(moviesNameArray))
@@ -90,6 +82,7 @@ const useGPTSearch = () => {
         })
     } catch (e) {
       console.log(e)
+      toast.error('Something went wrong. Try to search with different prompt.')
       dispatch(setErrorMessage( 'Something went wrong. Try to search with different prompt.'))
     }finally{
       dispatch(setIsLoading(false));
