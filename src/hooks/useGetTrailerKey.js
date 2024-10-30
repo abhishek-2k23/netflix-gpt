@@ -4,9 +4,9 @@ import { API_OPTION } from "../utils/constants";
 import { addMovieId, addMovieVideos, addTrailerKey } from "../redux/Slice/moviesSlice";
 import { useEffect } from "react";
 
-const useGetTrailerKey = ( fromCard=false) => {
+const useGetTrailerKey = ( movieID, fromCard=false) => {
     const dispatch = useDispatch();
-    const {trailerKey, movieID} = useSelector((store) => store?.movies)
+    const {trailerKey} = useSelector((store) => store?.movies)
   const getVideoClips = async () => {
 
     try{
