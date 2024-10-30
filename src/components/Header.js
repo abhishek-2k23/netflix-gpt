@@ -65,13 +65,13 @@ const Header = () => {
     >
       {/* logo */}
       <div className="flex gap-2 items-center z-10">
-        <img src={logo} alt="logo" className={`${isBrowsePage ? 'w-40':'w-32 md:w-52'}`} onClick={() => {navigate("/"); setIsSignUpForm(true)}}/>
+        <img src={logo} alt="logo" className={`${isBrowsePage ? 'w-40':'w-32 md:w-52'}`} onClick={() => {navigate("/"); setIsSignUpForm(true); dispatch(setIsSearchPage(false))}}/>
         <div className=" hidden md:flex">
-        {
+        {/* {
           isBrowsePage && ['Home', 'Tv Shows', 'My List'].map((menu) => (
             <div key={menu} className="flex mx-2"> <p className="text-md text-gray-100">{menu}</p> </div>
           ))
-        }
+        } */}
 
         </div>
       </div>
