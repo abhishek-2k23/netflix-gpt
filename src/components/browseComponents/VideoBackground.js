@@ -3,7 +3,7 @@ import useGetTrailerKey from "../../hooks/useGetTrailerKey";
 
 const VideoBackground = ({ movieID }) => {
   //get the key from the custom hook
-  const {trailerKey} = useGetTrailerKey(movieID);
+  const {trailerKey} = useGetTrailerKey();
 
   return (
     <div className="w-full overflow-hidden">

@@ -1,14 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
 import { movieVideoURL } from "../utils/url";
 import { API_OPTION } from "../utils/constants";
-import { addMovieVideos, addTrailerKey } from "../redux/Slice/moviesSlice";
+import { addMovieId, addMovieVideos, addTrailerKey } from "../redux/Slice/moviesSlice";
 import { useEffect } from "react";
 
-const useGetTrailerKey = (movieID, fromCard=false) => {
+const useGetTrailerKey = ( fromCard=false) => {
     const dispatch = useDispatch();
-    const {trailerKey, movieVideos} = useSelector((store) => store?.movies)
+    const {trailerKey, movieID} = useSelector((store) => store?.movies)
   const getVideoClips = async () => {
+
     try{
+      dispatch(addMovieId(movieID))
       const res = await fetch(
         movieVideoURL + movieID + "/videos?language=en-US",
         API_OPTION,

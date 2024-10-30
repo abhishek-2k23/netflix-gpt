@@ -9,7 +9,7 @@ const Movie = () => {
   const {backdrop_path , original_title, overview, genres, release_date} = useSelector((store) => store?.movies?.movieInfo);
   const {showMovieInfo} = useSelector((store) => store.movies);
 
-  let genersName = genres.map((genre) => genre.name).join(" |");
+  let genersName = genres.map((genre) => genre.name).join(" | ");
 
   if(showMovieInfo == null) return <Loader />
   return (
