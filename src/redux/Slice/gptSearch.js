@@ -12,6 +12,10 @@ const gptSearchSlice = createSlice({
     reducers: {
         setIsSearchPage: (state) => {
             state.isSearchPage = !state.isSearchPage;
+            if(state.isSearchPage === false){
+                state.searchedMoviesData = null;
+                state.searchResults = null;
+            }
         }, 
         setSearchResults: (state, action) => {
             state.searchResults = action.payload;
