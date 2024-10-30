@@ -1,5 +1,4 @@
 import React from "react"
-import { useLocation } from "react-router-dom"
 import useForOneMovie from "../../hooks/useForOneMovie"
 import { imageCDN  } from "../../utils/url"
 import { useSelector } from "react-redux"
@@ -13,7 +12,7 @@ const Movie = () => {
 
   if(showMovieInfo == null) return <Loader />
   return (
-    <div className=" absolute w-11/12 md:w-1/2 top-[20%] border border-gray-800 md:top-1/4  -bottom-2  rounded-md flex justify-center  text-red-500 ">
+    <div className=" absolute w-11/12 md:w-1/2 top-[20%] border border-gray-800 md:top-1/4   rounded-md flex justify-center  text-red-500 ">
       {/* cancel button  */}
       <div
         className="absolute top-2 right-2 cursor-pointer w-6 h-6 rounded-full bg-red-500 text-white text-center align-middle z-50"
@@ -25,7 +24,7 @@ const Movie = () => {
 
       {/* moive background */}
       <div  className='w-full z-10  cursor-pointer relative rounded-lg '>
-        <div className="inset-0 z-20 bg-black/70  absolute "></div>
+        <div className="inset-0 z-20 bg-black/90  absolute "></div>
       <img src={imageCDN+backdrop_path} alt="poster" className=' absolute w-full z-10  object-cover block rounded-lg'/>
     </div>
 
