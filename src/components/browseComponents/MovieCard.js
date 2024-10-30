@@ -6,11 +6,11 @@ import useGetTrailerKey from "../../hooks/useGetTrailerKey";
 
 const MovieCard = ({ id, poster }) => {
   
-  const {handleMovieCard, fetchMovieRelatedVideo} = useForOneMovie();
+  const {handleMovieCard} = useForOneMovie();
 
   if (!poster) return null
   return (
-    <div onClick={() => {handleMovieCard(id); fetchMovieRelatedVideo()}} className="w-32 md:w-48 cursor-pointer relative p-2 rounded-lg">
+    <div onClick={() => {handleMovieCard(id)}} className="w-32 md:w-48 cursor-pointer relative p-2 rounded-lg">
       <img
         src={imageCDN + poster}
         alt="poster"

@@ -25,11 +25,6 @@ const useForOneMovie = () => {
         .then(data => dispatch(addMovieInfo(data)))
         .catch(err => console.log(err))
     }
-
-    const fetchMovieRelatedVideo = () => {
-        getVideoClips();
-    }
-
     useEffect(() => {
         if(movieId){
             fetchMovieDetails();
@@ -37,7 +32,7 @@ const useForOneMovie = () => {
     }, [movieId]);
     
 
-    return {handleMovieCard, fetchMovieRelatedVideo};
+    return {handleMovieCard};
 }
 
 export default useForOneMovie;
