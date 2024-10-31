@@ -12,7 +12,6 @@ import toast from "react-hot-toast"
 import { Link } from "react-router-dom"
 
 const Header = () => {
-  const [isToastDisplayed, setIsToastDisplayed] = useState(false);
   const { pathname } = useLocation()
   const [isBrowsePage, setIsBrowsePage] = useState(false)
   const [isLogin, setIsLogin] = useState(false)
@@ -39,7 +38,6 @@ const Header = () => {
       if (user) {
         const { uid, email, displayName, photoURL } = user
         dispatch(addUser({ uid, email, displayName, photoURL }))
-        setIsToastDisplayed(true);
         navigate("/browse")
       } else {
           dispatch(removeUser())
