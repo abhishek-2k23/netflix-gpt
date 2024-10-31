@@ -39,7 +39,6 @@ const Header = () => {
       if (user) {
         const { uid, email, displayName, photoURL } = user
         dispatch(addUser({ uid, email, displayName, photoURL }))
-        !isToastDisplayed && toast.success('welcome to netflix-gpt');
         setIsToastDisplayed(true);
         navigate("/browse")
       } else {

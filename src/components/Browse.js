@@ -8,13 +8,18 @@ import useGetTopRatedMovies from '../hooks/useGetTopRatedMovies';
 import { useSelector } from 'react-redux';
 import GptSearch from './browseComponents/gptSearch/GptSearch';
 import Movie from './MovieInfo/Movie';
+import toast from 'react-hot-toast';
 const Browse = () => {
   const isSearchPage = useSelector((store) => store.gptSearch.isSearchPage);
-  const {movieInfo, showMovieId} = useSelector((store) => store.movies);
+  const {movieInfo} = useSelector((store) => store.movies);
 
   useGetNowPlayingMovies();
   useGetPopularMovies();
   useGetTopRatedMovies();
+
+  useEffect(() => 
+    {toast.success('welcome to netflix-gpt')}, []);
+
   return (
     <div className={`${movieInfo && 'h-screen'}`}>
 
